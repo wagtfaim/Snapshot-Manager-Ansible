@@ -1,0 +1,25 @@
+---
+- name: Find folder path of an existing virtual machine
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - vcenter_vars.yml
+  vars:
+    ansible_python_interpreter: "/usr/bin/env python3"
+  tasks:
+
+    - name: Create a snapshot
+      community.vmware.vmware_guest_snapshot:
+       credential_vcenter_hostname: '{{ hostname }}'
+       credential_vcenter_password: '{{ password }}'
+       credential_vcenter_username: '{{ username }}'
+       datacenter: "{{ vm_folder.folders[0] | regex_search('(?!\/)([a-zA-Z]+[0-9]+)') }}"
+       folder: "{{ vm_folder.folders[0] }}"
+       name: "{{ guest_name }}"
+       validate_certs: False
+       state: present
+       snapshot_name: snap1
+       description: snap1_description
+      delegate_to: localhost
+
+

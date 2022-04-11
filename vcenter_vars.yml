@@ -1,0 +1,14 @@
+---
+- name: teste
+  #gather_facts: no
+  vars:
+    ansible_python_interpreter: "/usr/bin/env python3"
+  hosts: localhost
+  tasks:
+    - set_fact:
+       ansible_python_interpreter: "/usr/bin/env python3"
+       #datacenter_name: 'SPBRDC13'
+       guest_name: "WAGNER"
+       credential_vcenter_hostname: '{{ hostname }}'
+       credential_vcenter_password: '{{ password }}'
+       credential_vcenter_username: '{{ username }}'

@@ -1,0 +1,18 @@
+---
+- name: Find folder path of an existing virtual machine
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - vcenter_vars.yml
+  vars:
+    ansible_python_interpreter: "/usr/bin/env python3"
+  tasks:
+    - name: Find folder for VM 
+      community.vmware.vmware_guest_find:
+        credential_vcenter_hostname: '{{ hostname }}'
+        credential_vcenter_password: '{{ password }}'
+        credential_vcenter_username: '{{ username }}'
+        validate_certs: False
+        name: "{{ guest_name }}"
+      delegate_to: localhost
+      register: vm_folder
