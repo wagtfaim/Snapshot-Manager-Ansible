@@ -9,9 +9,9 @@
   tasks:
     - name: Find folder for VM 
       community.vmware.vmware_guest_find:
-        credential_vcenter_hostname: '{{ hostname }}'
-        credential_vcenter_password: '{{ password }}'
-        credential_vcenter_username: '{{ username }}'
+        hostname: '{{ credential_vcenter_hostname }}'
+        password: '{{ credential_vcenter_password }}'
+        username: '{{ credential_vcenter_username }}'
         validate_certs: False
         name: "{{ guest_name }}"
       delegate_to: localhost
