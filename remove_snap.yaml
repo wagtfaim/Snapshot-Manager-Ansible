@@ -12,7 +12,7 @@
        credential_vcenter_hostname: '{{ hostname }}'
        credential_vcenter_password: '{{ password }}'
        credential_vcenter_username: '{{ username }}'
-       datacenter: "{{ vm_folder.folders[0] | regex_search('(?!\/)([a-zA-Z]+[0-9]+)') }}"
+       datacenter: "{{ vm_folder.folders[0] | regex_search('[a-zA-Z]([^\/]*)') }}"
        folder: "{{ vm_folder.folders[0] }}"
        name: "{{ guest_name }}"
        validate_certs: False
